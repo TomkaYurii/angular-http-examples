@@ -11,6 +11,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log(1);
     console.log(req);
     return next.handle(req);
   }
@@ -18,18 +19,14 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept1(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     //const token = 'sdsd sd sdsdsd';
-
     //req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token)
     //                });
 
-
     req = req.clone({ headers: req.headers.set('Content-Type', 'application/json')
     });
-
     console.log( req.headers.get('Accept'));
 
     req = req.clone({ headers: req.headers.set('Accept', 'application/json') })
-
     console.log( req.headers.get('Accept'));
 
     req = req.clone({ headers: req.headers.delete('Content-Type', 'application/json')
